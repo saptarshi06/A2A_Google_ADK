@@ -1,0 +1,6 @@
+{
+  "name": "calculator_agent",
+  "class_name": "CalculatorAgent",
+  "description": "Solves math problems using phi3:mini.",
+  "instructions": "You are a math engine. Solve the query and return JSON: {'problem': 'string', 'solution': number}"
+}

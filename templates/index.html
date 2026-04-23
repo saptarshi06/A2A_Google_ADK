@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A2A Agent Portal</title>
+</head>
+<body style="margin: 0; padding: 0; height: 100vh; display: flex; flex-direction: column; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9f9f9;">
+
+    <div style="flex: 1; padding: 40px; overflow-y: auto; display: flex; flex-direction: column; align-items: center;">
+        
+        <h2 style="color: #333;">Google ADK Orchestrator</h2>
+        
+        {% if output %}
+            <div style="width: 100%; max-width: 600px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 5px solid #4285F4;">
+                <div style="margin-bottom: 10px;">
+                    <span style="background: #e8f0fe; color: #1967d2; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase;">
+                        Agent Active
+                    </span>
+                </div>
+                
+                <strong style="display: block; margin-bottom: 8px; color: #555;">Response:</strong>
+                <div style="line-height: 1.6; color: #333; white-space: pre-wrap;">
+                    {{ output }}
+                </div>
+            </div>
+        {% else %}
+            <div style="text-align: center; margin-top: 50px; color: #888;">
+                <p>Ready to process your request via <strong>phi3:mini</strong>.</p>
+                <p style="font-size: 0.9rem;">Try: "Calculate 25 * 4" or "Book a flight to CCU"</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div style="padding: 30px; border-top: 1px solid #eee; background: white; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);">
+        <form method="POST" action="/" style="display: flex; justify-content: center; gap: 15px; max-width: 800px; margin: 0 auto;">
+            
+            <input type="text" 
+                   name="requirement" 
+                   placeholder="Enter your query here..." 
+                   required 
+                   autocomplete="off"
+                   style="flex: 1; padding: 12px 20px; border-radius: 25px; border: 1px solid #ddd; outline: none; font-size: 1rem; transition: border 0.3s;">
+            
+            <button type="submit" 
+                    style="padding: 12px 30px; background-color: #4285F4; color: white; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: background 0.3s;">
+                Run Agent
+            </button>
+        </form>
+    </div>
+
+    <script>
+        const input = document.querySelector('input[name="requirement"]');
+        input.addEventListener('focus', () => input.style.border = '1px solid #4285F4');
+        input.addEventListener('blur', () => input.style.border = '1px solid #ddd');
+    </script>
+
+</body>
+</html>
